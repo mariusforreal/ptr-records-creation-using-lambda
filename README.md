@@ -27,7 +27,7 @@ Setup
 bash
 Copy code
 git clone https://github.com/mariusforreal/ptr-records-creation-using-lambda.git
-cd aws-lambda-ptr-records
+cd ptr-records-creation-using-lambda
 
 3. AWS Lambda Code
 The repository includes two main Lambda functions:
