@@ -3,29 +3,28 @@ Automating PTR Record Creation in Private Hosted Zones Using AWS Lambda
 
 This repository provides a solution to automate the creation of PTR (Pointer) records for reverse DNS lookups in private hosted zones in AWS Route 53. The automation uses AWS Lambda functions to create PTR records based on existing DNS entries and reverse DNS lookup results.
 
-Features
+✨ Features
 
 Automated PTR Record Creation: Automatically create PTR records for IP addresses in AWS Route 53 private hosted zones.
-Reverse DNS Lookup: Perform reverse DNS lookups on IP addresses to verify the associated domain names.
-Integration with AWS Route 53: Leverage boto3 to interact with Route 53 and manage DNS entries.
-Multi-Region Support: Configure the Lambda to operate across multiple AWS regions.
+Reverse DNS Lookup: Perform reverse DNS lookups on IP addresses to verify associated domain names.
+Integration with AWS Route 53: Use boto3 to interact with Route 53 and manage DNS entries.
+Multi-Region Support: Configure Lambda to operate across multiple AWS regions.
 
-Prerequisites:
+🛠 Prerequisites
 
 Before deploying the Lambda functions, ensure the following prerequisites are met:
 
 AWS Account: An active AWS account with sufficient permissions to create and manage Lambda functions, Route 53 hosted zones, and resource record sets.
-Private Hosted Zone: A Route 53 private hosted zone configured for reverse DNS (e.g., 201.10.in-addr.arpa or in-addr.arpa)., In this case, I used in-addr.arpa
-IAM Role: The Lambda function needs a role with the following permissions:
+Private Hosted Zone: A Route 53 private hosted zone configured for reverse DNS (e.g., 201.10.in-addr.arpa).
+IAM Role: The Lambda function requires the following permissions:
 route53:ListHostedZones
 route53:ListResourceRecordSets
 route53:ChangeResourceRecordSets
 Python 3.x: Ensure the Lambda runtime is configured to use Python 3.x, as the code is written in Python.
-Setup
+
+🚀 Setup
 
 1. Clone the Repository
-bash
-Copy code
 git clone https://github.com/mariusforreal/ptr-records-creation-using-lambda.git
 cd ptr-records-creation-using-lambda
 
@@ -62,8 +61,7 @@ hosted_zone_id: The ID of the private hosted zone where PTR records will be crea
 5. Test the Lambda Function
 Use the Test feature in the Lambda console to verify that the PTR records are being created correctly. You can pass a sample event as follows:
 
-json
-Copy code
+
 {
   "ip_address": "192.168.1.10"
 }
@@ -78,26 +76,27 @@ INFO: Found A record with IP: 192.168.1.10
 INFO: PTR record created for IP: 192.168.1.10 in hosted zone: ZXXXXXXXXXXXXX
 INFO: PTR record creation successful.
 
-Usage
+🛠 Usage
 
-Trigger the Lambda: Set up the Lambda function to trigger periodically (e.g., using CloudWatch Events or EventBridge). You can also trigger it manually if needed.
-Automatic PTR Record Creation: The Lambda function will loop through the hosted zones and create PTR records for any new IP addresses found.
-Reverse DNS Lookup: The reverse lookup function verifies the correct association between the domain name and the IP address.
+Trigger the Lambda: Set up the Lambda function to trigger periodically (e.g., using CloudWatch Events or EventBridge). You can also trigger it manually.
+Automatic PTR Record Creation: The Lambda function will loop through hosted zones and create PTR records for any new IP addresses it finds.
+Reverse DNS Lookup: The reverse lookup function verifies the association between the domain name and IP address.
 
-Customization
+🔧 Customization
 
 Modify the TTL for PTR records in the create_ptr_record function.
-Extend the Lambda to handle different types of records or additional DNS zones.
-Security Considerations
+Extend the Lambda to handle different types of records or additional DNS zones if necessary.
 
-Ensure that your Lambda execution role has the minimum necessary permissions.
-Restrict access to your private hosted zones to authorized VPCs.
+🔒 Security Considerations
+
+Ensure your Lambda execution role has the minimum required permissions.
+Restrict access to your private hosted zones to authorized VPCs only.
 Enable logging and monitoring to audit changes to DNS records.
-Troubleshooting
 
-No PTR Record Created: Check if the hosted zone ID is correct and if the function has the necessary permissions to make changes in Route 53.
-Lambda Timeout: If the Lambda function times out, consider increasing its timeout setting, especially for large numbers of DNS records.
-License
+🛠 Troubleshooting
+
+No PTR Record Created: Check if the hosted zone ID is correct and if the function has sufficient permissions to make changes in Route 53.
+Lambda Timeout: If the Lambda function times out, consider increasing its timeout settings, especially for large numbers of DNS records.
 
 Feel free to customize this README as needed for your specific setup!
 
