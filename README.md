@@ -26,7 +26,7 @@ Setup
 1. Clone the Repository
 bash
 Copy code
-git clone https://github.com/your-username/aws-lambda-ptr-records.git
+git clone https://github.com/mariusforreal/ptr-records-creation-using-lambda.git
 cd aws-lambda-ptr-records
 
 3. AWS Lambda Code
